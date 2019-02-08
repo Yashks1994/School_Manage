@@ -20,25 +20,25 @@
                               
                             {% else %}
                                     <table style="width:100%">
-                                    {% for i in subject_data %}
-                                        {% for j in teacher_data %}
-                                        {% if i.course_id == j.course_id %}
-                                            
-                                            <tr>
-                                                
-                                                <th>Teacher Name</th>
-                                                <td>{{ j.teacher_name }}</td>
+                                    
                                         
+                                            <tr>
+                                                <th>Teacher Name</th>
+                                                {% for i in teacher_data %}
+                                                {% for j in student_data %}
+                                                {% if j.course_id == i.course_id %}
+                                                <td>{{ i.teacher_name }}</td>
                                                 {% endif %}
                                             </tr>
                                             
                                         {% endfor %}
                                     {% endfor %}
                                             <tr>
+                                                <br>
                                                 <th>Subjects</th>
                                                 {% for i in subject_data %}
                                                 <td>{{ i.subject_name }}</td>
-                                                <br>
+                                               
                                                 {% endfor %}
                                             </tr>
                                             </tr>

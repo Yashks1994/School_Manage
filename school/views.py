@@ -91,6 +91,7 @@ def parent_login(request):
 def dashboard(request):
     if 'teacher' in request.session:
         sessn_val = request.session['teacher']
+        
         return render(request, 'school/dashboard.html')
     elif 'student' in request.session:
         sessn_val = request.session['student']
@@ -225,7 +226,7 @@ def day_attendance(request, attendance_date):
     if 'teacher' in request.session:
         teacher_data = Teacher.objects.get(pk = request.session['teacher'])
         course_data = Course.objects.get(course_name=teacher_data.course)
-        attendance_data = Attendance.objects.filter(teacher = teacher_data.teacher_name, attendance_date = attendance_date )
+        attendance_data = Attendance.objects.filter(teacher = teacher_data.pk, attendance_date = attendance_date )
         content = {  'teacher_data': teacher_data, 'attendance_data' : attendance_data, 'course_data': course_data }
         return render(request, 'school/day_attendance.html', content)
     return render(request, 'school/day_attendance.html', content)
