@@ -1,0 +1,32 @@
+{%  extends "school/dashboard.html" %}
+
+{% block dashboard %}
+
+{% if 'student' in request.session %}
+	<thead>
+		<tr>
+			<th>Date</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for attendance in attendance_data  %}
+		<tr>
+			<td>{{ attendance.attendance_date }}</td>
+			{% with attendance.student as attndnc %}
+			{% with student_data.pk as studnt_id %}
+			{% if studnt_id in attndnc %}
+			<td><span  style="background-color: rgb(163, 228, 163)">{{ ' Present ' }}</span></td>
+			{% else %}
+			<td>{{ ' Absent ' }}</td>
+			{% endif %}
+			{% endwith %}
+			{% endwith %}
+
+		</tr>
+		{% endfor %}
+	</tbody>
+{% endif %}
+
+</table>
+{% endblock %}

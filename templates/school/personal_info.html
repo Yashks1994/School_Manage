@@ -1,0 +1,87 @@
+{%  extends "school/dashboard.html" %}
+
+
+
+                
+                <div class="content">  <!--- Content Box -->
+                    {% block dashboard %}
+                    <h1>Check the Information</h1> 
+                    <br>
+                    <!--- Student Personal Data  -->
+        
+                    <div id="box">
+                        <div class="box-top">Personal Information</div>
+                        <div class="box-panel">
+                          {% if 'teacher' in request.session %}
+                                {% for i in teacher_data %}
+                                <table style="width:80%">
+                                    <tr>
+                                      <th>Teacher ID</th>
+                                      <td>{{ i.teacher_id }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Name</th>
+                                      <td>{{ i.teacher_name }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Email</th>
+                                      <td>{{ i.email }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Contact No</th>
+                                      <td>{{ i.phone_no }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Course</th>
+                                      <td>{{ i.course }}</td>
+                                    </tr>
+                                </table>
+                                {% endfor %}
+                          
+                          {% else %}
+                          
+                                {% for i in student_data %}
+                                    <table style="width:80%">
+                                            <tr>
+                                              <th>Roll No</th>
+                                              <td>{{ i.roll_no }}</td>
+                                            </tr>
+                                            <tr>
+                                              <th>Name:</th>
+                                              <td>{{ i.name }}</td>
+                                            </tr>
+                                            <tr>
+                                              <th>Email</th>
+                                              <td>{{ i.student_email }}</td>
+                                            </tr>
+                                            <tr>
+                                              <th>Gender</th>
+                                              <td>{{ i.gender }}</td>
+                                            </tr>
+                                            <tr>
+                                              <th>Parent Name</th>
+                                              <td>{{ i.parent_name }}</td>
+                                            </tr>
+                                            <tr>
+                                              <th>Address</th>
+                                              <td>{{ i.address }}</td>
+                                            </tr>
+                                            <tr>
+                                              <th>Contact no</th>
+                                              <td>{{ i.phone_no }}</td>
+                                            </tr>
+                                            <tr>
+                                              <th>Department</th>
+                                              <td>{{ i.department }}</td>
+                                            </tr>
+                                            <tr>
+                                              <th>Course ID</th>
+                                              <td>{{ i.course_id }}</td>
+                                            </tr>
+                                    </table>
+                                  {% endfor %}
+                          {% endif %}
+                        </div>
+                    </div>
+            </div>
+{% endblock %}

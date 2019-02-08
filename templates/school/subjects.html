@@ -1,0 +1,49 @@
+{%  extends "school/dashboard.html" %}
+
+
+
+            
+                <div class="content">  <!--- Content Box -->
+                    {% block dashboard %}
+                    <h1>Subject Section</h1> 
+                    <br>
+        
+                    <!--- Subjects  -->
+                    <div id="box">
+                            <div class="box-top">Subjects</div>
+                            <div class="box-panel">
+                            {% if 'teacher' in request.session %}
+                                {% for i in subject_data %}
+                                    <td>{{ i.subject_name }}</td>
+                                    <br>
+                                {% endfor %}
+                              
+                            {% else %}
+                                    <table style="width:100%">
+                                    {% for i in subject_data %}
+                                        {% for j in teacher_data %}
+                                        {% if i.course_id == j.course_id %}
+                                            
+                                            <tr>
+                                                
+                                                <th>Teacher Name</th>
+                                                <td>{{ j.teacher_name }}</td>
+                                        
+                                                {% endif %}
+                                            </tr>
+                                            
+                                        {% endfor %}
+                                    {% endfor %}
+                                            <tr>
+                                                <th>Subjects</th>
+                                                {% for i in subject_data %}
+                                                <td>{{ i.subject_name }}</td>
+                                                <br>
+                                                {% endfor %}
+                                            </tr>
+                                            </tr>
+                                    </table>
+                            {% endif %}
+                            </div>
+                    </div>
+{% endblock %}

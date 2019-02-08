@@ -1,0 +1,67 @@
+{%  extends "school/header.html" %}
+
+{% block content %}
+
+<div id="header">
+    <div class="logo">
+        <a href="#">{% if 'teacher' in request.session %}Teacher{% elif 'student' in request.session %}Student{% else %}Parent{% endif %}<span>  Dashboard</span></a>
+    </div>
+    {% if 'teacher' in request.session %}
+    <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                    <a class="btn btn-primary" href="{% url 'school:signup' %}" type="button">Student Registration</a>
+            </ul>
+    </div>
+    {% endif %}
+</div>
+
+<div id="container">
+    <div class="sidebar">  <!--- left Side Column-->
+        <ul id="nav">
+                {% if 'teacher' in request.session %}
+                <li><a href="{% url 'school:dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'school:info' %}">Teacher Info</a></li>
+				<li><a href="{% url 'school:add_attendance' %}">Today's Attendance</a></li>
+				<li><a href="{% url 'school:view_attendance' %}">View Attendance</a></li>
+                <li><a href="{% url 'school:subject_info' %}">Subject</a></li>
+                <li><a href="{% url 'school:marks' %}">Marks</a></li>
+                <li><a href="{% url 'school:logout' %}">Logout</a></li>
+                {% elif 'student' in request.session %}
+                <li><a href="{% url 'school:dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'school:info' %}">Student Info</a></li>
+                <li><a href="{% url 'school:view_attendance' %}">Attendance</a></li>
+                <li><a href="{% url 'school:subject_info' %}">Subject</a></li>
+                <li><a href="{% url 'school:marks' %}">Marks</a></li>
+                <li><a href="{% url 'school:logout' %}">Logout</a></li>
+                {% elif 'parent' in request.session %}
+                <li><a href="{% url 'school:dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'school:info' %}">Student Info</a></li>
+                <li><a href="{% url 'school:subject_info' %}">Subject</a></li>
+                <li><a href="{% url 'school:marks' %}">Marks</a></li>
+                <li><a href="{% url 'school:logout' %}">Logout</a></li>
+                {% endif %}
+        </ul>
+        
+
+    </div>
+    <div class="content">  <!--- Content Box -->
+        {% block dashboard %}
+        <h1>Welcome to {% if 'teacher' in request.session %}Teacher{% elif 'student' in request.session %}Student{% else %}Parent{% endif %} Dashboard</h1> 
+        <br>
+        <p>Please go to Dashboard section to view the following Details</p>
+
+        <div id="box">
+            <div class="box-top">You are Logged In.</div>
+            <div class="box-panel">
+
+            </div>
+
+        {% endblock %}  
+                
+
+        </div>
+
+</div>
+
+
+{% endblock %}

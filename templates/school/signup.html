@@ -1,0 +1,32 @@
+{%  extends "school/header.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12"></div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+    
+                    <form class="form-conatiner" method="POST" action="{% url 'school:signup' %}">
+                        <h2><img height="45" src="/static/school/images/1.png" alt="">Student Registration</h2>
+
+                            {% csrf_token %}
+                            {% for field in form %}
+                            <p>
+                                {{ field.label_tag }}<br>
+                                {{ field }}
+                                {% if field.help_text %}
+                                <small style="color: grey">{{ field.help_text }}</small>
+                                {% endif %}
+                                {% for error in field.errors %}
+                                <p style="color: red">{{ error }}</p>
+                                {% endfor %}
+                            </p>
+                            {% endfor %}
+                            <button type="submit" class="btn btn-success btn-block">Sign Up</button>
+                    </form>
+                </div>
+        </div>
+</div>
+
+{% endblock %}

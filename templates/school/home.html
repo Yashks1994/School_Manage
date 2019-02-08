@@ -1,0 +1,96 @@
+
+{%  extends "school/header.html" %}
+
+
+
+{% block content %}
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">   <!-- This is for the side drop down-->
+                <span class="icon-bar"></span>  <!--How many Nav side bar you want, like one for one span -->
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>     
+            </button>
+            <a class="navbar-brand"  href="#"><img height="50" src="/static/school/images/fee-registration-min.jpg" alt=""></a>  <!-- Its for using the Logo-->
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="{% url 'school:index' %}">Home</a></li>
+                <li><a href="{% url 'school:index' %}">About</a></li>
+
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<!-- Now we are doing the Image Slider -->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>  <!--This basically the slider for main Web Page ) is active and another page is not active-->
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">  <!--Item which is active-->
+        <img height="100" width="100%" src="/static/school/images/SlidderImage.jpg" alt="">
+        <div class="carousel-caption">
+            <h2>School Management System</h2>
+            {% if 'teacher' in request.session %}
+	        <h3><a class=" btn btn-warning" href="{% url 'school:dashboard' %}">Dashboard</a></h3>
+	        {% elif 'student' in request.session  %}
+            <h3><a class=" btn btn-warning" href="{% url 'school:dashboard' %}">Dashboard</a></h3>
+            {% elif 'parent' in request.session  %}
+            <h3><a class=" btn btn-warning" href="{% url 'school:dashboard' %}">Dashboard</a></h3>
+	        {% else %}
+            <br>
+            <h3>Click on login</h3>
+            <ul>
+                <a class="btn btn-primary" href="{% url 'school:teacher_login' %}" type="button" data-target="#teacher_login">Teacher LogIn</a>
+                <a class="btn btn-primary" href="{% url 'school:student_login' %}" type="button" data-target="#teacher_login">Student LogIn</a>
+                <a class="btn btn-primary" href="{% url 'school:parent_login' %}" type="button" data-target="#teacher_login">Parent LogIn</a>
+                
+            </ul>
+            {% endif %}
+
+
+        </div>
+        </div>  <!--End of Item which is Active-->
+        <div class="item">
+            <img width="100%" src="/static/school/images/Webp.net-resizeimage.png" alt="">
+        </div>
+        <div class="item">
+                <img width="100%" src="/static/school/images/Slidder4.jpg" alt="">
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<footer class="container-fluid text-center">
+    <div class="row">
+        <div class="col-sum-4">
+            <h3>Contact Us</h3>
+            <h4>You can reach Us</h4>
+        </div>
+        <div class="col-sum-4">
+            <h3>Connect</h3>
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-google"></a>
+            <a href="#" class="fa fa-youtube"></a>
+        </div>
+
+    </div>
+</footer>
+
+
+{% endblock %}

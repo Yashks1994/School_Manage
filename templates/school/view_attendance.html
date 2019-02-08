@@ -1,0 +1,24 @@
+{%  extends "school/dashboard.html" %}
+
+{% block dashboard %}
+<table class="table table-stripped table-bordered">
+        {% if  'teacher' in request.session %}
+            <thead>
+                <tr>
+                    <th>S No.</th>
+                    <th>Attendance Name</th>
+                    <th>Total Attendance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for attendance in attendance_data  %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><a href="{% url 'school:day_attendance' attendance.attendance_date %}">{{ attendance.attendance_date }}</a></td>  <!-- attendance.attendance_date -->
+                    <td>total</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        {% endif %}
+
+{% endblock %}
